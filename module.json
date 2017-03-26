@@ -1,0 +1,18 @@
+{
+    "name": "Views",
+    "alias": "views",
+    "description": "",
+    "keywords": [],
+    "active": 1,
+    "order": 0,
+    "providers": [
+        "Modules\\Views\\Providers\\ViewsServiceProvider"
+    ],
+    "aliases": {},
+    "files": [
+        "start.php"
+    ],
+    "requires": [
+        "laravelmodules/core"
+    ]
+}

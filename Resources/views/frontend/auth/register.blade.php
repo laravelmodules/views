@@ -1,0 +1,87 @@
+@extends('views::frontend.layouts.app')
+
+@section('content')
+    <div class="row">
+
+        <div class="col-md-8 col-md-offset-2">
+
+            <div class="panel panel-default">
+                <div class="panel-heading">{{ trans('labels.frontend.auth.register_box_title') }}</div>
+
+                <div class="panel-body">
+
+                    {{ Form::open(['route' => 'frontend.auth.register', 'class' => 'form-horizontal']) }}
+
+                    <div class="form-group">
+                        {{ Form::label('username', trans('validation.attributes.frontend.username'), ['class' => 'col-md-4 control-label']) }}
+                        <div class="col-md-6">
+                            {{ Form::input('username', 'username', null, ['class' => 'form-control', 'placeholder' => trans('validation.attributes.frontend.username')]) }}
+                        </div><!--col-md-6-->
+                    </div><!--form-group-->
+
+                    <div class="form-group">
+                        {{ Form::label('name', trans('validation.attributes.frontend.name'), ['class' => 'col-md-4 control-label']) }}
+                        <div class="col-md-6">
+                            {{ Form::input('name', 'name', null, ['class' => 'form-control', 'placeholder' => trans('validation.attributes.frontend.name')]) }}
+                        </div><!--col-md-6-->
+                    </div><!--form-group-->
+
+                    <div class="form-group">
+                        {{ Form::label('lastname', trans('validation.attributes.frontend.lastname'), ['class' => 'col-md-4 control-label']) }}
+                        <div class="col-md-6">
+                            {{ Form::input('lastname', 'lastname', null, ['class' => 'form-control', 'placeholder' => trans('validation.attributes.frontend.lastname')]) }}
+                        </div><!--col-md-6-->
+                    </div><!--form-group-->
+
+                    <div class="form-group">
+                        {{ Form::label('email', trans('validation.attributes.frontend.email'), ['class' => 'col-md-4 control-label']) }}
+                        <div class="col-md-6">
+                            {{ Form::input('email', 'email', null, ['class' => 'form-control', 'placeholder' => trans('validation.attributes.frontend.email')]) }}
+                        </div><!--col-md-6-->
+                    </div><!--form-group-->
+
+                    <div class="form-group">
+                        {{ Form::label('password', trans('validation.attributes.frontend.password'), ['class' => 'col-md-4 control-label']) }}
+                        <div class="col-md-6">
+                            {{ Form::input('password', 'password', null, ['class' => 'form-control', 'placeholder' => trans('validation.attributes.frontend.password')]) }}
+                        </div><!--col-md-6-->
+                    </div><!--form-group-->
+
+                    <div class="form-group">
+                        {{ Form::label('password_confirmation', trans('validation.attributes.frontend.password_confirmation'), ['class' => 'col-md-4 control-label']) }}
+                        <div class="col-md-6">
+                            {{ Form::input('password', 'password_confirmation', null, ['class' => 'form-control', 'placeholder' => trans('validation.attributes.frontend.password_confirmation')]) }}
+                        </div><!--col-md-6-->
+                    </div><!--form-group-->
+
+                    @if (config('access.captcha.registration'))
+                        <div class="form-group">
+                            <div class="col-md-6 col-md-offset-4">
+                                {!! Form::captcha() !!}
+                                {{ Form::hidden('captcha_status', 'true') }}
+                            </div><!--col-md-6-->
+                        </div><!--form-group-->
+                    @endif
+
+                    <div class="form-group">
+                        <div class="col-md-6 col-md-offset-4">
+                            {{ Form::submit(trans('labels.frontend.auth.register_button'), ['class' => 'btn btn-primary']) }}
+                        </div><!--col-md-6-->
+                    </div><!--form-group-->
+
+                    {{ Form::close() }}
+
+                </div><!-- panel body -->
+
+            </div><!-- panel -->
+
+        </div><!-- col-md-8 -->
+
+    </div><!-- row -->
+@endsection
+
+@section('after-scripts')
+    @if (config('access.captcha.registration'))
+        {!! Captcha::script() !!}
+    @endif
+@endsection
